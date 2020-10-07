@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+  db:
+    image: percona:5.7-centos
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    ports:
+      - 3306:3306
+    
+
+
+  adminer:
+    image: adminer:standalone
+    restart: unless-stopped
+    ports:
+      - 8080:8080
